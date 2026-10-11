@@ -485,11 +485,6 @@ dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
 
 <footer>
   <div class="wrap">
-    <div class="credits">
-      <div><small>المدرسة</small><b id="creditSchool"></b></div>
-      <div><small>إعداد وتنفيذ</small><b id="creditTeam"></b></div>
-      <div><small>مديرة المدرسة</small><b id="creditPrincipal"></b></div>
-    </div>
     <p><span id="footName">رحلة قارئة</span>، مبادرة قرائية للطالبات</p>
   </div>
 </footer>
@@ -540,9 +535,6 @@ dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
    ============================================================ */
 const CONFIG = {
   initiative: 'رحلة قارئة',
-  school: 'المتوسطة ١١٣',
-  principal: 'مزنة المولد',
-  team: 'معلمات اللغة العربية',
 
   // المحطات الأربع: min = عدد الكتب اللازم للوصول إليها
   stages: [
@@ -627,10 +619,6 @@ function stageIndex(n) { let i = 0; STAGES.forEach((s, k) => { if (n >= s.min) i
 document.title = CONFIG.initiative + ' | مبادرة قرائية للطالبات';
 $('#brandName').textContent = CONFIG.initiative;
 $('#footName').textContent = CONFIG.initiative;
-$('#creditSchool').textContent = CONFIG.school;
-$('#creditTeam').textContent = CONFIG.team;
-$('#creditPrincipal').textContent = CONFIG.principal;
-if (CONFIG.school) $('#heroTag').textContent = 'مبادرة قرائية لطالبات ' + CONFIG.school;
 
 /* ---------- المحتوى الثابت ---------- */
 const starIco = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="' + starPath(12, 12, 11) + '"/></svg>';
