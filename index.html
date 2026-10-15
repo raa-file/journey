@@ -262,6 +262,32 @@ dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
 .toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,24px);background:var(--star);color:var(--night);padding:10px 24px;border-radius:99px;opacity:0;pointer-events:none;transition:all .3s;z-index:100;font-weight:500;max-width:calc(100vw - 32px);text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
+.sky .lb{font-family:var(--body);font-size:19px;fill:var(--mist);text-anchor:middle}
+.sky .lb.on{fill:var(--star);font-weight:700}
+.actdlg{width:min(600px,calc(100vw - 24px))}
+.actdlg .field textarea{min-height:84px;resize:vertical;line-height:1.7}
+.actdlg .field span b{color:var(--star);font-weight:700}
+.actcount{color:var(--mist);font-size:.92rem;margin:4px 0 14px}
+.log details{margin-top:6px;font-size:.92rem}
+.log summary{cursor:pointer;color:var(--star)}
+.log details div{margin-top:8px;color:#e9e6dd}
+.log details div b{display:block;color:var(--mist);font-weight:500;font-size:.85rem}
+.bk-actions{display:flex;flex-wrap:wrap;gap:8px}
+.bk-sum{color:var(--mist);line-height:1.9;margin:10px 0 18px}
+.bk-extra{border:1px dashed var(--star);border-radius:14px;padding:12px 16px;margin-bottom:18px;font-size:.95rem}
+.bk-extra b{color:var(--star)}
+.bk-meta{color:var(--star);font-size:.95rem}
+.trail{max-width:430px;margin-inline:auto}
+.trail .tbg{fill:none;stroke:var(--mist);stroke-opacity:.35;stroke-width:2;stroke-dasharray:2 9;stroke-linecap:round}
+.trail .tfg{fill:none;stroke:var(--star2);stroke-opacity:.75;stroke-width:3;stroke-linecap:round}
+.trail .tfg.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:tdraw 2.4s .3s cubic-bezier(.6,.1,.2,1) forwards}
+@keyframes tdraw{to{stroke-dashoffset:0}}
+.trail .stop .off{fill:var(--night);stroke:var(--mist);stroke-opacity:.6;stroke-width:2;stroke-linejoin:round}
+.trail .stop .on{fill:var(--star);stroke:var(--star);stroke-width:2;stroke-linejoin:round}
+.trail .stop .halo{fill:var(--star);fill-opacity:.2}
+.trail .stop text{font-family:var(--body);font-size:16px;fill:var(--mist)}
+.trail .stop.now text{fill:#fff;font-weight:700}
+.trail .stop.done text{fill:var(--star)}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
@@ -303,7 +329,7 @@ dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
       </div>
     </div>
     <div>
-      <svg class="sky" id="skyHero" viewBox="0 0 600 380" role="img" aria-label="سماء القارئة: نجمة لكل كتاب"></svg>
+      <svg class="sky trail" id="skyHero" viewBox="0 0 400 440" role="img" aria-label="مسار الرحلة القرائية بأربع محطات"></svg>
       <p class="sky-cap" id="heroCap"></p>
     </div>
   </div>
@@ -344,7 +370,6 @@ dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
         <ul>
           <li>إعلان المبادرة وتعريف الطالبات بها</li>
           <li>فتح تسجيل الدخول للطالبات</li>
-          <li>تجهيز ركن القراءة</li>
         </ul>
       </div>
       <div class="phase">
@@ -434,8 +459,8 @@ dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
               <label class="field"><span>عدد الصفحات</span><input name="pages" type="number" min="1" max="3000" inputmode="numeric"></label>
             </div>
             <label class="field"><span>رأيك في جملة واحدة</span><input name="note" maxlength="140"></label>
-            <button class="btn btn-gold" type="submit">سجّلي الكتاب</button>
-            <p class="hint">تُحفظ بياناتك على هذا الجهاز فقط.</p>
+            <button class="btn btn-gold" type="submit">التالي: أنشطة الكتاب</button>
+            <p class="hint">بعد قراءة الكتاب تحلّين أنشطته الخمسة، ثم تضيء نجمتك. تُحفظ بياناتك على هذا الجهاز فقط.</p>
           </form>
         </div>
         <div class="panel">
@@ -451,7 +476,7 @@ dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
 <section id="books">
   <div class="wrap">
     <h2>كتب مقترحة</h2>
-    <p class="lead">ثمانية كتب اخترناها لتبدأي بها. إذا قرأتِ أحدها فسجّليه بضغطة واحدة لتضيء نجمتك.</p>
+    <p class="lead">ثمانية كتب اخترناها لتبدأي بها. اضغطي على أي كتاب لتري ملخصه ورابط قراءته. وإذا قرأتِه فحلّي أنشطته لتضيء نجمتك.</p>
     <div class="shelf" id="shelf"></div>
   </div>
 </section>
@@ -485,6 +510,11 @@ dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
 
 <footer>
   <div class="wrap">
+    <div class="credits">
+      <div><small>المدرسة</small><b id="creditSchool"></b></div>
+      <div><small>إعداد وتنفيذ</small><b id="creditTeam"></b></div>
+      <div><small>مديرة المدرسة</small><b id="creditPrincipal"></b></div>
+    </div>
     <p><span id="footName">رحلة قارئة</span>، مبادرة قرائية للطالبات</p>
   </div>
 </footer>
@@ -504,9 +534,9 @@ dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
         <label class="field"><span>الصف</span>
           <select name="grade" required>
             <option value="">اختاري الصف</option>
-            <option>الأول المتوسط</option>
-            <option>الثاني المتوسط</option>
-            <option>الثالث المتوسط</option>
+            <option>الأول الثانوي</option>
+            <option>الثاني الثانوي</option>
+            <option>الثالث الثانوي</option>
           </select>
         </label>
         <button class="btn btn-gold" type="submit" style="width:100%">دخول</button>
@@ -527,6 +557,37 @@ dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
   </div>
 </dialog>
 
+<dialog id="bookDlg" class="actdlg" aria-labelledby="bTitle">
+  <div class="dlg">
+    <div class="dlg-head">
+      <h2 id="bTitle"></h2>
+      <button class="x" id="bClose" aria-label="إغلاق" type="button">×</button>
+    </div>
+    <div class="bk-meta" id="bAuthor"></div>
+    <p class="bk-sum" id="bSum"></p>
+    <div class="bk-extra" id="bExtra" hidden></div>
+    <div class="bk-actions">
+      <a class="btn btn-line btn-sm" id="bLink" target="_blank" rel="noopener noreferrer"></a>
+      <button class="btn btn-gold btn-sm" id="bRead" type="button"></button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="actDlg" class="actdlg" aria-labelledby="aTitle">
+  <div class="dlg">
+    <div class="dlg-head">
+      <h2 id="aTitle">أنشطة الكتاب</h2>
+      <button class="x" id="aClose" aria-label="إغلاق" type="button">×</button>
+    </div>
+    <p class="sub" id="aSub"></p>
+    <form id="actForm" autocomplete="off">
+      <div id="aFields"></div>
+      <p class="actcount" id="aCount"></p>
+      <button class="btn btn-gold" type="submit" id="aSubmit" style="width:100%" disabled>أضيئي نجمتي</button>
+    </form>
+  </div>
+</dialog>
+
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
@@ -535,6 +596,9 @@ dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
    ============================================================ */
 const CONFIG = {
   initiative: 'رحلة قارئة',
+  school: 'المتوسطة ١١٣',
+  principal: 'مزنة المولد',
+  team: 'معلمات اللغة العربية',
 
   // المحطات الأربع: min = عدد الكتب اللازم للوصول إليها
   stages: [
@@ -544,16 +608,33 @@ const CONFIG = {
     { name: 'سفيرة المعرفة', min: 8, desc: 'تحمل شغف القراءة إلى كل من حولها.' }
   ],
 
-  // الكتب الثمانية: غيّري العناوين والمؤلفين والوصف عند وصول القائمة
+  // الكتب الثمانية: s = الملخص، link = رابط القراءة، extra = نشاط إضافي خاص بكتاب واحد (اختياري)
   books: [
-    { t: 'الكتاب الأول',  a: 'اسم المؤلف', w: 'وصف قصير للكتاب يُضاف هنا.' },
-    { t: 'الكتاب الثاني', a: 'اسم المؤلف', w: 'وصف قصير للكتاب يُضاف هنا.' },
-    { t: 'الكتاب الثالث', a: 'اسم المؤلف', w: 'وصف قصير للكتاب يُضاف هنا.' },
-    { t: 'الكتاب الرابع', a: 'اسم المؤلف', w: 'وصف قصير للكتاب يُضاف هنا.' },
-    { t: 'الكتاب الخامس', a: 'اسم المؤلف', w: 'وصف قصير للكتاب يُضاف هنا.' },
-    { t: 'الكتاب السادس', a: 'اسم المؤلف', w: 'وصف قصير للكتاب يُضاف هنا.' },
-    { t: 'الكتاب السابع', a: 'اسم المؤلف', w: 'وصف قصير للكتاب يُضاف هنا.' },
-    { t: 'الكتاب الثامن', a: 'اسم المؤلف', w: 'وصف قصير للكتاب يُضاف هنا.' }
+    { t: 'العادات الذرية', a: 'جيمس كلير', w: 'خطوات صغيرة تصنع عادات كبيرة.',
+      s: 'يعرض الكاتب فكرة بسيطة: التغيير الكبير يأتي من تحسّن صغير يتكرر كل يوم. يشرح كيف تتكوّن العادة من إشارة ورغبة واستجابة ومكافأة، وكيف نجعل العادة الجيدة واضحة وجذابة وسهلة، والعادة السيئة العكس. ويدعو إلى أن نبني هويتنا بما نكرره، فمن تقرأ كل يوم تصبح قارئة.',
+      link: 'https://www.google.com/search?tbm=bks&q=%D8%A7%D9%84%D8%B9%D8%A7%D8%AF%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B0%D8%B1%D9%8A%D8%A9%20%D8%AC%D9%8A%D9%85%D8%B3%20%D9%83%D9%84%D9%8A%D8%B1', lab: 'ابحثي عن الكتاب',
+      extra: { t: 'توثيق الكتاب', d: 'وثّقي الكتاب بطريقة علمية: اسم المؤلف، وتاريخ النشر، وعنوان الكتاب.', ph: 'مثال: المؤلف. (سنة النشر). عنوان الكتاب. دار النشر.' } },
+    { t: 'فن اللامبالاة', a: 'مارك مانسون', w: 'كيف تختارين ما يستحق اهتمامك.',
+      s: 'يرى الكاتب أن مطاردة الإيجابية الدائمة لا تصنع السعادة، وأن الحياة مليئة بالمشكلات التي لا مفر منها. الحل في أن نختار بوعي القيم والأمور التي تستحق اهتمامنا، ونتحمّل مسؤولية ما يحدث لنا، ونتقبّل الفشل والألم كجزء من النمو.',
+      link: 'https://www.google.com/search?tbm=bks&q=%D9%81%D9%86%20%D8%A7%D9%84%D9%84%D8%A7%D9%85%D8%A8%D8%A7%D9%84%D8%A7%D8%A9%20%D9%85%D8%A7%D8%B1%D9%83%20%D9%85%D8%A7%D9%86%D8%B3%D9%88%D9%86', lab: 'ابحثي عن الكتاب' },
+    { t: 'لأنك الله', a: 'علي بن جابر الفيفي', w: 'تأملات في القرب من الله.',
+      s: 'كتاب إيماني يدعو القارئ إلى التأمل في صلته بالله، وفي أسمائه وصفاته وأثرها على القلب والسلوك. يربط بين معرفة الله وبين الطمأنينة والثقة في أحوال الحياة المختلفة.',
+      link: 'https://www.google.com/search?tbm=bks&q=%D9%84%D8%A3%D9%86%D9%83%20%D8%A7%D9%84%D9%84%D9%87%20%D8%B9%D9%84%D9%8A%20%D8%A8%D9%86%20%D8%AC%D8%A7%D8%A8%D8%B1%20%D8%A7%D9%84%D9%81%D9%8A%D9%81%D9%8A', lab: 'ابحثي عن الكتاب' },
+    { t: 'الرحيق المختوم', a: 'صفي الرحمن المباركفوري', w: 'سيرة النبي ﷺ بأسلوب موثّق.',
+      s: 'بحث في السيرة النبوية حاز جائزة المركز الأول في مسابقة رابطة العالم الإسلامي للسيرة. يبدأ بأحوال العرب والأمم قبل البعثة، ثم يتتبّع حياة النبي ﷺ من المولد إلى الوفاة، ويعرض الغزوات والأحداث الكبرى بترتيب واضح وتوثيق للمصادر.',
+      link: 'https://www.google.com/search?tbm=bks&q=%D8%A7%D9%84%D8%B1%D8%AD%D9%8A%D9%82%20%D8%A7%D9%84%D9%85%D8%AE%D8%AA%D9%88%D9%85%20%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D9%83%D9%81%D9%88%D8%B1%D9%8A', lab: 'ابحثي عن الكتاب' },
+    { t: 'كليلة ودمنة', a: 'ابن المقفع', w: 'حكايات على ألسنة الحيوان.',
+      s: 'مجموعة حكايات على لسان الحيوان نقلها ابن المقفع إلى العربية في القرن الثاني الهجري، وأصلها هندي. تدور حول الأسد والثور والشقيقين كليلة ودمنة، وتحمل حكمًا في السياسة والصداقة والحذر من الحاشية والمكر. كل حكاية تُروى داخل حكاية أخرى، وتنتهي بعبرة.',
+      link: 'https://ar.wikisource.org/wiki/%D9%83%D9%84%D9%8A%D9%84%D8%A9_%D9%88%D8%AF%D9%85%D9%86%D8%A9', lab: 'اقرئي الكتاب' },
+    { t: 'شيء عن التربية الوطنية', a: '', w: 'قراءة في مفهوم التربية الوطنية.',
+      s: 'يتناول الكتاب مفهوم التربية الوطنية وقيمها كالانتماء والمسؤولية، ودور المدرسة والأسرة في غرسها. (يمكن للمعلمة تعديل هذا الملخص ليطابق نسخة الكتاب المعتمدة.)',
+      link: 'https://www.google.com/search?tbm=bks&q=%D8%B4%D9%8A%D8%A1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9', lab: 'ابحثي عن الكتاب' },
+    { t: 'حي بن يقظان', a: 'ابن طفيل', w: 'قصة فلسفية عن العقل والتأمل.',
+      s: 'قصة فلسفية كتبها الأندلسي ابن طفيل في القرن السادس الهجري. ينشأ حي وحده في جزيرة منعزلة، ويصل بالتأمل في الطبيعة والعقل إلى معرفة الكون وخالقه. ثم يلتقي بإنسان من جزيرة مجاورة، فيقارن ما وصل إليه بالعقل بما جاءت به الشريعة، وتؤكد القصة أن الحق واحد.',
+      link: 'https://ar.wikisource.org/w/index.php?search=%D8%AD%D9%8A%20%D8%A8%D9%86%20%D9%8A%D9%82%D8%B8%D8%A7%D9%86', lab: 'اقرئي الكتاب' },
+    { t: 'دور التربويين في حماية فكر الناشئة', a: '', w: 'مسؤولية التربويين تجاه الناشئة.',
+      s: 'يتناول الكتاب مسؤولية المعلمين والمربين في حماية فكر الأجيال الناشئة من الأفكار المنحرفة، وطرق تعزيز الوعي والحوار والقدوة. (يمكن للمعلمة تعديل هذا الملخص ليطابق نسخة الكتاب المعتمدة.)',
+      link: 'https://www.google.com/search?tbm=bks&q=%D8%AF%D9%88%D8%B1%20%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A%D9%8A%D9%86%20%D9%81%D9%8A%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D9%81%D9%83%D8%B1%20%D8%A7%D9%84%D9%86%D8%A7%D8%B4%D8%A6%D8%A9', lab: 'ابحثي عن الكتاب' }
   ],
 
   goals: [
@@ -564,12 +645,13 @@ const CONFIG = {
     { t: 'بناء مجتمع قرائي داخل المدرسة', d: 'طالبات يتشاركن الكتب والآراء ويحتفين بإنجازات بعضهن.' }
   ],
 
+  // الأنشطة: تحلّها الطالبة بعد قراءة كل كتاب وقبل أن تضيء نجمتها
   activities: [
-    { t: 'اقتباس يستحق التأمل', d: 'شاركي اقتباسًا استوقفك في كتاب، واكتبي لماذا يستحق أن نتأمله.' },
-    { t: 'غلاف بديل', d: 'أعيدي تصميم غلاف كتاب أحببتِه بفكرتك وألوانك.' },
-    { t: 'ملخّص قارئة', d: 'لخّصي كتابًا أعجبك وقرأتِه.' },
-    { t: 'أجمل سطرين', d: 'اختاري أجمل سطرين في الكتاب وشاركيهما مع زميلاتك.' },
-    { t: 'خريطة مفاهيم', d: 'صمّمي خريطة مفاهيم لكتاب قرأتِه.' }
+    { t: 'اقتباس يستحق التأمل', d: 'شاركي اقتباسًا استوقفك في كتاب، واكتبي لماذا يستحق أن نتأمله.', ph: 'اكتبي الاقتباس، ثم لماذا يستحق التأمل' },
+    { t: 'غلاف بديل', d: 'أعيدي تصميم غلاف كتاب أحببتِه بفكرتك وألوانك.', ph: 'صفي غلافك الجديد: الفكرة والألوان والرسمة' },
+    { t: 'ملخّص قارئة', d: 'لخّصي كتابًا أعجبك وقرأتِه.', ph: 'لخّصي الكتاب بأسلوبك في عدة أسطر' },
+    { t: 'أجمل سطرين', d: 'اختاري أجمل سطرين في الكتاب وشاركيهما مع زميلاتك.', ph: 'اكتبي أجمل سطرين وجدتِهما في الكتاب' },
+    { t: 'خريطة مفاهيم', d: 'صمّمي خريطة مفاهيم لكتاب قرأتِه.', ph: 'اكتبي الفكرة الرئيسية في الوسط وأهم فروعها' }
   ],
 
   // نتائج توضيحية: عدّليها بحسب ما حققته المبادرة
@@ -619,6 +701,10 @@ function stageIndex(n) { let i = 0; STAGES.forEach((s, k) => { if (n >= s.min) i
 document.title = CONFIG.initiative + ' | مبادرة قرائية للطالبات';
 $('#brandName').textContent = CONFIG.initiative;
 $('#footName').textContent = CONFIG.initiative;
+$('#creditSchool').textContent = CONFIG.school;
+$('#creditTeam').textContent = CONFIG.team;
+$('#creditPrincipal').textContent = CONFIG.principal;
+if (CONFIG.school) $('#heroTag').textContent = 'مبادرة قرائية لطالبات ' + CONFIG.school;
 
 /* ---------- المحتوى الثابت ---------- */
 const starIco = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="' + starPath(12, 12, 11) + '"/></svg>';
@@ -639,7 +725,7 @@ function starPath(cx, cy, r) {
 }
 const SKY = Array.from({ length: 12 }, (_, i) => ({ x: Math.round(548 - i * 45), y: Math.round(300 - 190 * Math.sin(Math.PI * i / 11) + (i % 2 ? 26 : -6)) }));
 const BG = (() => { let s = 7, a = []; for (let i = 0; i < 46; i++) { s = (s * 9301 + 49297) % 233280; const x = s / 233280 * 600; s = (s * 9301 + 49297) % 233280; const y = s / 233280 * 380; a.push([x.toFixed(0), y.toFixed(0), i % 5 ? 1 : 1.6, (0.25 + (i % 4) * .15).toFixed(2)]); } return a; })();
-function drawSky(svg, n, newIdx = -1) {
+function drawSky(svg, n, newIdx = -1, labels = false) {
   const lit = Math.min(n, SKY.length);
   let h = '';
   BG.forEach(b => { h += `<circle class="bg" cx="${b[0]}" cy="${b[1]}" r="${b[2]}" opacity="${b[3]}"/>`; });
@@ -648,7 +734,33 @@ function drawSky(svg, n, newIdx = -1) {
     if (i < lit) h += `<g class="st on${i === newIdx ? ' pop' : ''}" style="--d:${((i * .37) % 3).toFixed(2)}s"><circle class="halo" cx="${p.x}" cy="${p.y}" r="22"/><path class="gem" d="${starPath(p.x, p.y, 14)}"/></g>`;
     else h += `<circle class="st off" cx="${p.x}" cy="${p.y}" r="4.5"/>`;
   });
+  if (labels) {
+    const si = stageIndex(n);
+    STAGES.forEach((s, i) => {
+      const p = SKY[Math.max(0, s.min - 1)], x = Math.min(535, Math.max(65, p.x)), y = (i === 0 || i === 3) ? p.y + 44 : p.y - 28;
+      h += `<text class="lb${i <= si ? ' on' : ''}" x="${x}" y="${y}">${esc(s.name)}</text>`;
+    });
+  }
   svg.innerHTML = h;
+}
+
+/* ---------- مسار المحطات (أول الصفحة) ---------- */
+let trailDrawn = false;
+function drawTrail(svg, si) {
+  const D = 'M 330 410 C 330 330, 90 360, 120 280 S 310 230, 250 160 S 70 110, 130 36';
+  svg.innerHTML = `<path class="tbg" d="${D}"/><path class="tfg${trailDrawn ? '' : ' draw'}" id="tfgPath" pathLength="1" d="${D}"/>`;
+  trailDrawn = true;
+  const fg = svg.querySelector('#tfgPath'), len = fg.getTotalLength();
+  STAGES.forEach((s, i) => {
+    const p = fg.getPointAtLength(len * (i / (STAGES.length - 1)));
+    const cls = i < si ? 'done' : i === si ? 'now' : '', on = i <= si, leftSide = p.x < 200;
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', 'stop ' + cls);
+    g.innerHTML = (on ? `<circle class="halo" cx="${p.x}" cy="${p.y}" r="26"/>` : '') +
+      `<path class="${on ? 'on' : 'off'}" d="${starPath(p.x, p.y, i === si ? 19 : 15)}"/>` +
+      `<text x="${p.x + (leftSide ? 28 : -28)}" y="${p.y + 6}" text-anchor="${leftSide ? 'end' : 'start'}">${esc(s.name)}</text>`;
+    svg.appendChild(g);
+  });
 }
 
 /* ---------- المحطات ---------- */
@@ -671,17 +783,17 @@ function render() {
   $('#heroCta').textContent = u ? 'اذهبي إلى سمائي' : 'سجّلي دخولك وابدئي';
 
   // الواجهة
-  drawSky($('#skyHero'), u ? n : 4, justAdded);
-  $('#heroCap').textContent = u ? `سماؤك الآن: ${n === 1 ? 'نجمة واحدة' : fmt(n) + ' نجوم'}` : 'مثال: سماء قارئة أنهت أربعة كتب';
+  drawTrail($('#skyHero'), si);
+  $('#heroCap').textContent = u ? `أنتِ الآن في محطة «${STAGES[si].name}»` : 'أربع محطات، وفي كل محطة وسام';
 
   renderStations(si, loggedIn);
 
   // سمائي
   $('#locked').hidden = loggedIn; $('#dash').hidden = !loggedIn;
-  $('#skyLead').textContent = loggedIn ? 'هنا نجومك وأوسمتك وكتبك. كل كتاب جديد يضيء نجمة.' : 'هنا تظهر نجومك وأوسمتك وكتبك. تحتاجين تسجيل الدخول لتبدئي.';
+  $('#skyLead').textContent = loggedIn ? 'هنا نجومك وأوسمتك وكتبك. نجمة جديدة بعد كل كتاب تقرئينه وتحلّين أنشطته.' : 'هنا تظهر نجومك وأوسمتك وكتبك. تحتاجين تسجيل الدخول لتبدئي.';
   drawSky($('#skyLocked'), 0);
   if (loggedIn) {
-    drawSky($('#skyMain'), n, justAdded);
+    drawSky($('#skyMain'), n, justAdded, true);
     $('#dHello').textContent = `مرحبًا ${u.name.split(' ')[0]}، محطتك الآن`;
     $('#dStation').textContent = STAGES[si].name;
     const nxt = STAGES[si + 1];
@@ -703,6 +815,7 @@ function render() {
           <b>${esc(b.title)}</b>
           <span class="meta">${[b.author, b.pages ? fmt(b.pages) + ' صفحة' : ''].filter(Boolean).map(esc).join('، ')}</span>
           ${b.note ? `<div class="note">${esc(b.note)}</div>` : ''}
+          ${b.acts ? `<details><summary>أنشطتي في هذا الكتاب</summary>${b.acts.map(a => `<div><b>${esc(a.t)}</b>${esc(a.v || '')}</div>`).join('')}</details>` : ''}
         </div>
         <button class="icon-btn" data-del="${b.id}" aria-label="حذف ${esc(b.title)}">حذف</button>
       </li>`).join('') : '<li class="empty">لم تسجّلي كتبًا بعد. أضيفي أول كتاب لتضيء أول نجمة.</li>';
@@ -725,32 +838,80 @@ function renderShelf() {
         <h3>${esc(b.t)}</h3><span>${esc(b.a || '')}</span>
       </div>
       <p>${esc(b.w)}</p>
-      <button class="btn btn-ink btn-sm" data-read="${i}" ${read ? 'disabled' : ''}>${read ? 'أضاءت نجمتك' : 'قرأته، أضيئي نجمتي'}</button>
+      <div class="bk-actions">
+        <button class="btn btn-ink btn-sm" data-info="${i}">الملخص والقراءة</button>
+      </div>
     </article>`;
   }).join('');
 }
+const bookDlg = $('#bookDlg');
+let openIdx = -1;
+function showBook(i) {
+  const b = CONFIG.books[i], u = me(); openIdx = i;
+  $('#bTitle').textContent = b.t;
+  $('#bAuthor').textContent = b.a ? 'المؤلف: ' + b.a : '';
+  $('#bSum').textContent = b.s;
+  $('#bExtra').hidden = !b.extra;
+  if (b.extra) $('#bExtra').innerHTML = `<b>نشاط إضافي في هذا الكتاب:</b> ${esc(b.extra.t)}. ${esc(b.extra.d)}`;
+  const a = $('#bLink'); a.href = b.link; a.textContent = b.lab;
+  const read = !!u && u.books.some(x => x.title === b.t), r = $('#bRead');
+  r.disabled = read; r.textContent = read ? 'أضاءت نجمتك' : 'قرأته، حلّي أنشطته';
+  bookDlg.showModal();
+}
 $('#shelf').addEventListener('click', e => {
-  const btn = e.target.closest('[data-read]'); if (!btn || btn.disabled) return;
-  const b = CONFIG.books[+btn.dataset.read];
+  const btn = e.target.closest('[data-info]'); if (btn) showBook(+btn.dataset.info);
+});
+$('#bClose').addEventListener('click', () => bookDlg.close());
+bookDlg.addEventListener('click', e => { if (e.target === bookDlg) bookDlg.close(); });
+$('#bRead').addEventListener('click', () => {
+  const b = CONFIG.books[openIdx]; bookDlg.close();
   if (!me()) { toast('سجّلي دخولك أولًا لتضيئي نجمتك'); openLogin(); return; }
   addBook({ title: b.t, author: b.a });
 });
 
 /* ---------- إضافة وحذف الكتب ---------- */
-function addBook({ title, author = '', pages = '', note = '' }) {
+let pending = null;
+const actDlg = $('#actDlg');
+function addBook(info) {
   const u = me(); if (!u) { openLogin(); return false; }
-  title = title.trim(); if (!title) return false;
+  const title = (info.title || '').trim(); if (!title) return false;
   if (u.books.some(b => b.title === title)) { toast('هذا الكتاب مسجّل لديك'); return false; }
-  const prev = stageIndex(u.books.length);
-  u.books.push({ id: Date.now() + Math.random().toString(36).slice(2, 6), title, author: author.trim(), pages: pages ? +pages : '', note: note.trim() });
-  persist(); justAdded = u.books.length - 1; render();
-  const st = stageIndex(u.books.length);
-  toast(st > prev ? `مبروك! حصلتِ على وسام «${STAGES[st].name}»` : 'أضاءت نجمة جديدة في سمائك');
+  const cb = CONFIG.books.find(b => b.t === title);
+  const fields = CONFIG.activities.concat(cb && cb.extra ? [cb.extra] : []);
+  pending = { title, author: (info.author || '').trim(), pages: info.pages ? +info.pages : '', note: (info.note || '').trim(), fields };
+  $('#aSub').innerHTML = `أنهيتِ كتاب «${esc(title)}»؟ حلّي الأنشطة (${fmt(fields.length)}) لتضيء نجمتك.`;
+  $('#aFields').innerHTML = fields.map((a, k) => `
+    <label class="field"><span><b>${k + 1}.</b> ${esc(a.t)}: ${esc(a.d)}</span>
+      <textarea name="a${k}" maxlength="600" placeholder="${esc(a.ph)}"></textarea></label>`).join('');
+  checkActs(); actDlg.showModal();
   return true;
 }
+const ACT_MIN = 8;
+function checkActs() {
+  const vals = (pending ? pending.fields : []).map((_, k) => ($('#actForm').elements['a' + k].value || '').trim().length >= ACT_MIN);
+  const done = vals.filter(Boolean).length;
+  $('#aCount').textContent = `اكتملت ${fmt(done)} من ${fmt(vals.length)} أنشطة`;
+  $('#aSubmit').disabled = !vals.length || done < vals.length;
+}
+$('#actForm').addEventListener('input', checkActs);
+$('#aClose').addEventListener('click', () => actDlg.close());
+actDlg.addEventListener('click', e => { if (e.target === actDlg) actDlg.close(); });
+$('#actForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const u = me(); if (!u || !pending) return;
+  const acts = pending.fields.map((f, k) => ({ t: f.t, v: e.target.elements['a' + k].value.trim() }));
+  if (acts.some(a => a.v.length < ACT_MIN)) { checkActs(); return; }
+  const prev = stageIndex(u.books.length);
+  const { fields, ...rec } = pending;
+  u.books.push({ id: Date.now() + Math.random().toString(36).slice(2, 6), ...rec, acts });
+  pending = null; actDlg.close(); $('#bookForm').reset();
+  persist(); justAdded = u.books.length - 1; render();
+  const st = stageIndex(u.books.length);
+  toast(st > prev ? `مبروك! حصلتِ على وسام «${STAGES[st].name}»` : 'أحسنتِ! أضاءت نجمة جديدة في سمائك');
+});
 $('#bookForm').addEventListener('submit', e => {
   e.preventDefault();
-  if (addBook(Object.fromEntries(new FormData(e.target)))) e.target.reset();
+  addBook(Object.fromEntries(new FormData(e.target)));
 });
 $('#log').addEventListener('click', e => {
   const id = e.target.dataset.del, u = me(); if (!id || !u) return;
