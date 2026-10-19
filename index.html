@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رحلة قارئة | مبادرة قرائية للطالبات</title>
+<meta name="description" content="مبادرة قرائية للطالبات: كل كتاب تقرئينه يضيء نجمة في سمائك، وكل محطة تصلينها تمنحك وسامًا.">
+<meta name="theme-color" content="#0E1A2B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&family=Cairo:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0E1A2B;
+  --deep:#14253D;
+  --dusk:#1F3555;
+  --star:#F0C878;
+  --star2:#E3A94C;
+  --mist:#B9C8DD;
+  --lilac:#A99BD1;
+  --paper:#F6F4EF;
+  --paper2:#ECE9E1;
+  --ink:#14233A;
+  --muted:#5C6B80;
+  --line:rgba(20,35,58,.14);
+  --lineD:rgba(185,200,221,.22);
+  --display:'Amiri','Traditional Arabic',serif;
+  --body:'Tajawal','Segoe UI',Tahoma,sans-serif;
+  --wrap:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.95;font-size:1.08rem;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--star);outline-offset:3px;border-radius:6px}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(20px,5vw,40px)}
+section{padding-block:clamp(64px,10vw,116px)}
+h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.5}
+h2{font-size:clamp(2.1rem,4.8vw,3.2rem);margin-bottom:.3em}
+.lead{color:var(--muted);max-width:56ch;font-size:1.12rem}
+.dark{background:var(--night);color:var(--paper)}
+.dark .lead{color:var(--mist)}
+.alt{background:var(--paper2)}
+
+/* progress */
+.progress{position:fixed;inset:0 0 auto 0;height:3px;z-index:60}
+.progress i{display:block;height:100%;width:0;background:var(--star);transform-origin:right}
+
+/* header */
+.top{position:sticky;top:0;z-index:50;background:rgba(14,26,43,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--lineD);color:var(--paper)}
+.top .wrap{display:flex;align-items:center;gap:22px;height:66px}
+.brand{font-family:var(--display);font-weight:700;font-size:1.65rem;text-decoration:none;white-space:nowrap;color:var(--star)}
+.top nav{display:flex;gap:2px;margin-inline-start:auto;overflow-x:auto;scrollbar-width:none}
+.top nav::-webkit-scrollbar{display:none}
+.top nav a{padding:6px 12px;border-radius:99px;text-decoration:none;font-size:.97rem;color:var(--mist);white-space:nowrap;transition:background .2s,color .2s}
+.top nav a:hover{background:rgba(185,200,221,.14);color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;cursor:pointer;border-radius:99px;padding:12px 28px;font-weight:500;font-size:1.02rem;text-decoration:none;transition:transform .15s,background .2s,box-shadow .2s}
+.btn:active{transform:scale(.97)}
+.btn-gold{background:var(--star);color:var(--night)}
+.btn-gold:hover{background:#f7d896}
+.btn-ink{background:var(--ink);color:var(--paper)}
+.btn-ink:hover{background:var(--dusk)}
+.btn-line{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.btn-line:hover{background:rgba(127,127,127,.14)}
+.btn-sm{padding:8px 20px;font-size:.95rem}
+.btn[disabled]{opacity:.55;cursor:default}
+@media(max-width:980px){.top nav{display:none}.top .btn{margin-inline-start:auto}}
+
+/* hero */
+#hero{padding-block:clamp(40px,7vw,90px) clamp(40px,7vw,84px);overflow:hidden;position:relative;
+  background:
+   radial-gradient(1.5px 1.5px at 12% 22%,rgba(255,255,255,.8),transparent),
+   radial-gradient(1px 1px at 38% 12%,rgba(255,255,255,.6),transparent),
+   radial-gradient(1.5px 1.5px at 62% 36%,rgba(255,255,255,.7),transparent),
+   radial-gradient(1px 1px at 84% 14%,rgba(255,255,255,.6),transparent),
+   radial-gradient(1px 1px at 92% 62%,rgba(255,255,255,.5),transparent),
+   radial-gradient(1.5px 1.5px at 24% 78%,rgba(255,255,255,.6),transparent),
+   radial-gradient(ellipse at 22% 30%,rgba(169,155,209,.22),transparent 55%),
+   linear-gradient(180deg,var(--night),var(--deep))}
+.hero-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(24px,5vw,60px);align-items:center}
+.hero-tag{display:inline-block;background:rgba(240,200,120,.14);color:var(--star);padding:3px 18px;border-radius:99px;font-size:.95rem;margin-bottom:22px;border:1px solid rgba(240,200,120,.3)}
+h1{font-size:clamp(2.6rem,6vw,4.5rem);line-height:1.4;margin-bottom:.3em}
+h1 em{font-style:normal;color:var(--star)}
+.hero p.lead{margin-bottom:34px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.sky{width:100%;height:auto;overflow:visible}
+.sky .ln{stroke:var(--mist);stroke-opacity:.25;stroke-width:1.2;stroke-dasharray:3 6}
+.sky .ln.on{stroke:var(--star);stroke-opacity:.8;stroke-dasharray:none;stroke-width:1.6}
+.sky .st.off{fill:none;stroke:var(--mist);stroke-opacity:.5;stroke-width:1.4}
+.sky .halo{fill:var(--star);fill-opacity:.16}
+.sky .gem{fill:var(--star)}
+.sky .st.on .gem,.sky .st.on .halo{transform-box:fill-box;transform-origin:center;animation:twinkle 3.4s var(--d,0s) ease-in-out infinite}
+.sky .st.pop .gem{animation:pop .9s cubic-bezier(.2,1.4,.3,1) both,twinkle 3.4s 1s ease-in-out infinite}
+.sky .bg{fill:#fff}
+@keyframes twinkle{0%,100%{transform:scale(1)}50%{transform:scale(.88)}}
+@keyframes pop{0%{transform:scale(0) rotate(-40deg)}100%{transform:scale(1) rotate(0)}}
+.sky-cap{color:var(--mist);font-size:.92rem;text-align:center;margin-top:6px}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.sky{max-width:520px;margin-inline:auto}}
+
+/* about + goals */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,80px);align-items:start}
+.about-grid .big{font-family:var(--display);font-size:clamp(1.7rem,3.3vw,2.4rem);line-height:1.8}
+.about-grid p+p{margin-top:1em}
+.about-grid p{color:var(--muted)}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr}}
+.goals-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,6vw,80px)}
+.goals-grid h2{position:sticky;top:96px;align-self:start}
+.goal-list{list-style:none}
+.goal-list li{display:flex;gap:20px;padding-block:24px;border-top:1px solid var(--line)}
+.goal-list li:last-child{border-bottom:1px solid var(--line)}
+.goal-list svg{flex:none;width:22px;height:22px;margin-top:10px;color:var(--star2)}
+.goal-list h3{font-size:1.5rem}
+.goal-list p{color:var(--muted)}
+@media(max-width:860px){.goals-grid{grid-template-columns:1fr}.goals-grid h2{position:static}}
+
+/* plan */
+.phases{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px}
+.phase{padding:0 0 0 24px;position:relative}
+.phase::before{content:"";position:absolute;top:13px;right:38px;left:-4px;border-top:1.5px dashed var(--lineD)}
+.phase:last-child::before{display:none}
+.phase .mark{position:relative;width:28px;height:28px;border-radius:50%;background:var(--star);color:var(--night);display:grid;place-items:center;font-weight:700;font-size:.85rem;margin-bottom:22px;z-index:1}
+.phase h3{font-size:1.65rem}
+.phase .when{color:var(--star);font-size:.95rem;margin-bottom:14px}
+.phase ul{list-style:none;color:var(--mist);font-size:1rem}
+.phase li{padding-inline-start:16px;position:relative;margin-bottom:6px}
+.phase li::before{content:"";position:absolute;right:0;top:.95em;width:6px;height:1.5px;background:var(--star)}
+@media(max-width:860px){
+  .phases{grid-template-columns:1fr;gap:36px}
+  .phase{padding:0 52px 0 0}
+  .phase .mark{position:absolute;right:0;top:0;margin:0}
+  .phase::before{top:28px;bottom:-36px;right:13.5px;left:auto;border-top:0;border-right:1.5px dashed var(--lineD)}
+}
+
+/* stations */
+.stations{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}
+.station{position:relative;background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px 22px 24px;transition:transform .25s,box-shadow .25s,border-color .25s}
+.station .no{font-family:var(--display);font-size:3rem;line-height:1;color:var(--lilac);opacity:.7}
+.station h3{font-size:1.6rem;margin:10px 0 2px}
+.station .req{color:var(--star2);font-weight:700;font-size:.95rem;margin-bottom:8px}
+.station p{color:var(--muted);font-size:.98rem}
+.station.here{background:var(--night);color:var(--paper);border-color:var(--night);transform:translateY(-8px);box-shadow:0 24px 40px -22px rgba(14,26,43,.7)}
+.station.here p{color:var(--mist)}
+.station.here .no{color:var(--star);opacity:1}
+.station.here::after{content:"أنتِ هنا";position:absolute;top:16px;left:16px;background:var(--star);color:var(--night);font-size:.78rem;font-weight:700;padding:0 12px;border-radius:99px}
+.station.done .no{color:var(--star2);opacity:1}
+@media(max-width:900px){.stations{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.stations{grid-template-columns:1fr}}
+
+/* my sky */
+.panel{background:rgba(255,255,255,.05);border:1px solid var(--lineD);border-radius:22px;padding:clamp(20px,3vw,32px)}
+.locked{text-align:center;padding:clamp(36px,6vw,64px) 20px}
+.locked .sky{max-width:420px;margin:0 auto 22px;opacity:.5}
+.locked h3{font-size:1.8rem}
+.locked p{color:var(--mist);max-width:44ch;margin:6px auto 22px}
+.dash-top{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(20px,4vw,48px);align-items:center}
+.dash-top small{color:var(--star)}
+.dash-top h3{font-size:clamp(2rem,4vw,2.8rem);line-height:1.4}
+.dash-top p{color:var(--mist)}
+.meter{margin-top:20px}
+.meter-top{display:flex;justify-content:space-between;margin-bottom:8px;color:var(--mist);font-size:.95rem}
+.meter-top b{color:var(--star);font-family:var(--display);font-size:1.4rem}
+.bar{height:9px;border-radius:99px;background:rgba(185,200,221,.2);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(270deg,var(--star2),var(--star));border-radius:99px;transition:width .7s cubic-bezier(.3,.7,.2,1)}
+@media(max-width:860px){.dash-top{grid-template-columns:1fr}}
+.medals-h{margin:34px 0 14px;font-size:1.4rem}
+.medals{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.medal{text-align:center;padding:16px 8px;border-radius:18px;border:1px solid var(--lineD);background:rgba(255,255,255,.03)}
+.medal svg{width:64px;height:64px;margin:0 auto 6px}
+.medal .ring{fill:rgba(240,200,120,.12);stroke:var(--star);stroke-width:2.2}
+.medal .gem{fill:var(--star)}
+.medal b{display:block;font-size:.98rem;font-weight:500}
+.medal.lock{opacity:.4}
+.medal.lock .ring{stroke:var(--mist);stroke-dasharray:4 5;fill:none}
+.medal.lock .gem{fill:var(--mist)}
+@media(max-width:600px){.medals{grid-template-columns:repeat(2,1fr)}}
+.dash-bottom{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(20px,4vw,40px);margin-top:34px;align-items:start}
+@media(max-width:860px){.dash-bottom{grid-template-columns:1fr}}
+.field{display:block;margin-bottom:14px}
+.field span{display:block;font-size:.93rem;color:var(--mist);margin-bottom:4px}
+.field input,.field select,.field textarea{width:100%;border:1.5px solid var(--lineD);background:rgba(255,255,255,.06);color:var(--paper);border-radius:12px;padding:10px 14px;transition:border-color .2s,background .2s}
+.field select option{color:var(--ink)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--star);background:rgba(255,255,255,.1)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.row2{grid-template-columns:1fr}}
+.hint{color:var(--mist);font-size:.88rem;margin-top:12px;opacity:.85}
+.log{list-style:none;max-height:480px;overflow:auto}
+.log li{display:flex;gap:14px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--lineD)}
+.log li:first-child{padding-top:0}
+.log .tick{flex:none;width:22px;height:22px;margin-top:5px;color:var(--star)}
+.log .info{flex:1;min-width:0}
+.log b{display:block;font-weight:500}
+.log .meta{color:var(--mist);font-size:.9rem}
+.log .note{font-size:.95rem;margin-top:2px;color:#e9e6dd}
+.icon-btn{background:none;border:0;cursor:pointer;color:var(--mist);padding:4px 8px;border-radius:8px;font-size:.9rem}
+.icon-btn:hover{background:rgba(185,200,221,.14);color:#fff}
+.empty{color:var(--mist);padding:26px 0;text-align:center;display:block}
+
+/* books */
+.shelf{display:grid;grid-template-columns:repeat(4,1fr);gap:34px 22px;margin-top:44px}
+@media(max-width:980px){.shelf{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.shelf{grid-template-columns:repeat(2,1fr);gap:28px 14px}}
+.book{display:flex;flex-direction:column}
+.cover{aspect-ratio:3/4;border-radius:4px 14px 14px 4px;padding:18px 16px;display:flex;flex-direction:column;justify-content:space-between;position:relative;box-shadow:inset -9px 0 0 rgba(0,0,0,.12),0 16px 26px -16px rgba(20,35,58,.65);margin-bottom:14px;transition:transform .25s}
+.book:hover .cover{transform:translateY(-6px) rotate(-1deg)}
+.cover h3{font-size:clamp(1.15rem,2vw,1.6rem);line-height:1.5}
+.cover span{font-size:.85rem;opacity:.85}
+.cover .badge{position:absolute;top:12px;left:12px;width:30px;height:30px;color:currentColor;opacity:.35}
+.book.read .cover .badge{color:var(--star);opacity:1;filter:drop-shadow(0 0 6px rgba(240,200,120,.8))}
+.book p{font-size:.95rem;color:var(--muted);flex:1;margin-bottom:10px}
+.book .btn{align-self:flex-start}
+
+/* activities */
+.acts{margin-top:44px;list-style:none;counter-reset:a}
+.acts li{display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:start;padding:24px 0;border-top:1px solid var(--lineD);counter-increment:a}
+.acts li:last-child{border-bottom:1px solid var(--lineD)}
+.acts li::before{content:counter(a);font-family:var(--display);font-size:2.6rem;line-height:1;color:var(--star);opacity:.85}
+.acts h3{font-size:1.55rem}
+.acts p{color:var(--mist)}
+
+/* results + stats */
+.res-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(28px,6vw,80px)}
+.res-list{list-style:none}
+.res-list li{display:flex;gap:18px;padding:22px 0;border-top:1px solid var(--line)}
+.res-list li:last-child{border-bottom:1px solid var(--line)}
+.res-list svg{flex:none;width:26px;height:26px;margin-top:8px;color:var(--star2)}
+.res-list h3{font-size:1.45rem}
+.res-list p{color:var(--muted)}
+@media(max-width:860px){.res-grid{grid-template-columns:1fr}}
+#stats{background:var(--dusk);color:var(--paper);padding-block:clamp(56px,8vw,96px)}
+#stats h2{text-align:center;margin-bottom:46px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;text-align:center}
+.stat b{display:block;font-family:var(--display);font-size:clamp(2.8rem,6vw,4.6rem);line-height:1.3;color:var(--star)}
+.stat span{color:var(--mist)}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr);row-gap:40px}}
+
+/* footer */
+footer{background:var(--night);color:var(--mist);padding:56px 0 36px;text-align:center;font-size:.95rem}
+.credits{display:flex;justify-content:center;gap:clamp(28px,7vw,88px);flex-wrap:wrap;margin-bottom:32px}
+.credits small{display:block;color:var(--mist);opacity:.8;font-size:.88rem}
+.credits b{font-family:'Cairo',var(--body);font-size:1.25rem;font-weight:700;color:var(--paper);line-height:1.7}
+
+/* dialog */
+dialog{border:0;border-radius:24px;padding:0;background:var(--deep);color:var(--paper);width:min(460px,calc(100vw - 24px));max-height:calc(100vh - 32px);margin:auto;overflow:auto;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);border:1px solid var(--lineD)}
+dialog::backdrop{background:rgba(6,12,22,.7);backdrop-filter:blur(3px)}
+.dlg{padding:clamp(22px,4vw,32px)}
+.dlg-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:6px}
+.dlg-head h2{font-size:2rem;margin:0}
+.x{background:rgba(185,200,221,.16);border:0;width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:1.2rem;line-height:1;color:var(--paper)}
+.x:hover{background:rgba(185,200,221,.3)}
+.dlg p.sub{color:var(--mist);margin-bottom:18px}
+.profiles{list-style:none;margin-top:22px;border-top:1px solid var(--lineD);padding-top:16px}
+.profiles h3{font-size:1.15rem;margin-bottom:8px;color:var(--mist);font-family:var(--body);font-weight:500}
+.profiles button{display:flex;justify-content:space-between;width:100%;background:rgba(255,255,255,.05);border:1px solid var(--lineD);border-radius:12px;padding:9px 14px;cursor:pointer;margin-bottom:8px;text-align:right}
+.profiles button:hover{border-color:var(--star)}
+.profiles small{color:var(--mist)}
+.me{display:flex;align-items:center;gap:14px;padding:16px;border:1px solid var(--lineD);border-radius:16px;margin:12px 0 20px;background:rgba(255,255,255,.04)}
+.me .av{width:46px;height:46px;border-radius:50%;background:var(--star);color:var(--night);display:grid;place-items:center;font-family:var(--display);font-size:1.5rem;font-weight:700}
+
+.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,24px);background:var(--star);color:var(--night);padding:10px 24px;border-radius:99px;opacity:0;pointer-events:none;transition:all .3s;z-index:100;font-weight:500;max-width:calc(100vw - 32px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+.sky .lb{font-family:var(--body);font-size:19px;fill:var(--mist);text-anchor:middle}
+.sky .lb.on{fill:var(--star);font-weight:700}
+.actdlg{width:min(600px,calc(100vw - 24px))}
+.actdlg .field textarea{min-height:84px;resize:vertical;line-height:1.7}
+.actdlg .field span b{color:var(--star);font-weight:700}
+.actcount{color:var(--mist);font-size:.92rem;margin:4px 0 14px}
+.log details{margin-top:6px;font-size:.92rem}
+.log summary{cursor:pointer;color:var(--star)}
+.log details div{margin-top:8px;color:#e9e6dd}
+.log details div b{display:block;color:var(--mist);font-weight:500;font-size:.85rem}
+.bk-actions{display:flex;flex-wrap:wrap;gap:8px}
+.bk-sum{color:var(--mist);line-height:1.9;margin:10px 0 18px}
+.bk-extra{border:1px dashed var(--star);border-radius:14px;padding:12px 16px;margin-bottom:18px;font-size:.95rem}
+.bk-extra b{color:var(--star)}
+.bk-meta{color:var(--star);font-size:.95rem}
+.trail{max-width:430px;margin-inline:auto}
+.trail .tbg{fill:none;stroke:var(--mist);stroke-opacity:.35;stroke-width:2;stroke-dasharray:2 9;stroke-linecap:round}
+.trail .tfg{fill:none;stroke:var(--star2);stroke-opacity:.75;stroke-width:3;stroke-linecap:round}
+.trail .tfg.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:tdraw 2.4s .3s cubic-bezier(.6,.1,.2,1) forwards}
+@keyframes tdraw{to{stroke-dashoffset:0}}
+.trail .stop .off{fill:var(--night);stroke:var(--mist);stroke-opacity:.6;stroke-width:2;stroke-linejoin:round}
+.trail .stop .on{fill:var(--star);stroke:var(--star);stroke-width:2;stroke-linejoin:round}
+.trail .stop .halo{fill:var(--star);fill-opacity:.2}
+.trail .stop text{font-family:var(--body);font-size:16px;fill:var(--mist)}
+.trail .stop.now text{fill:#fff;font-weight:700}
+.trail .stop.done text{fill:var(--star)}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"><i id="pbar"></i></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#hero" id="brandName">رحلة قارئة</a>
+    <nav aria-label="أقسام الصفحة">
+      <a href="#about">عن المبادرة</a>
+      <a href="#goals">الأهداف</a>
+      <a href="#plan">الخطة</a>
+      <a href="#stations">المحطات</a>
+      <a href="#sky">سمائي</a>
+      <a href="#books">الكتب</a>
+      <a href="#activities">الأنشطة</a>
+      <a href="#results">النتائج</a>
+    </nav>
+    <button class="btn btn-gold btn-sm" id="loginBtn" data-open-login>تسجيل الدخول</button>
+  </div>
+</header>
+
+<main>
+
+<!-- الواجهة -->
+<section id="hero" class="dark">
+  <div class="wrap hero-grid">
+    <div class="hero">
+      <span class="hero-tag" id="heroTag">مبادرة قرائية للطالبات</span>
+      <h1>كل كتاب <em>نجمة</em> في سمائك</h1>
+      <p class="lead">سجّلي دخولك، واقرئي، وشاهدي سماءك تضيء نجمة بعد نجمة، وكل محطة تصلينها تمنحك وسامًا جديدًا.</p>
+      <div class="hero-actions">
+        <button class="btn btn-gold" id="heroCta" data-open-login>سجّلي دخولك وابدئي</button>
+        <a class="btn btn-line" href="#about">تعرّفي على المبادرة</a>
+      </div>
+    </div>
+    <div>
+      <svg class="sky trail" id="skyHero" viewBox="0 0 400 440" role="img" aria-label="مسار الرحلة القرائية بأربع محطات"></svg>
+      <p class="sky-cap" id="heroCap"></p>
+    </div>
+  </div>
+</section>
+
+<!-- نبذة -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <h2>عن المبادرة</h2>
+      <p class="big">القراءة سماء واسعة، وكل كتاب نجمة تضيء فيها. لذلك جعلنا لكل طالبة سماءً خاصة بها.</p>
+    </div>
+    <div>
+      <p>«رحلة قارئة» مبادرة مدرسية تدعو الطالبات إلى جعل القراءة عادة يومية ممتعة. تسجّل كل طالبة دخولها، وتُضيء نجمة مع كل كتاب تُنهيه، وتنتقل بين أربع محطات تمنحها في كل واحدة وسامًا يحتفي بإنجازها.</p>
+      <p>لا نريد عدّ الكتب فقط. نريد أن تتعلّم الطالبة كيف تلخّص ما قرأت، وكيف تتأمل ما استوقفها، وكيف تحوّل الفكرة إلى تصميم أو حوار.</p>
+    </div>
+  </div>
+</section>
+
+<!-- الأهداف -->
+<section id="goals" class="alt">
+  <div class="wrap goals-grid">
+    <h2>أهداف المبادرة</h2>
+    <ul class="goal-list" id="goalList"></ul>
+  </div>
+</section>
+
+<!-- الخطة -->
+<section id="plan" class="dark">
+  <div class="wrap">
+    <h2>خطة التنفيذ</h2>
+    <p class="lead">اثنا عشر أسبوعًا، في أربع مراحل متتابعة.</p>
+    <div class="phases">
+      <div class="phase">
+        <div class="mark">1</div>
+        <h3>الانطلاق</h3>
+        <div class="when">الأسبوعان 1 و2</div>
+        <ul>
+          <li>إعلان المبادرة وتعريف الطالبات بها</li>
+          <li>فتح تسجيل الدخول للطالبات</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="mark">2</div>
+        <h3>الاستكشاف</h3>
+        <div class="when">الأسابيع من 3 إلى 6</div>
+        <ul>
+          <li>بدء تحدّي القراءة وتسجيل الكتب</li>
+          <li>التعريف بالكتب المقترحة</li>
+          <li>جلسات قراءة صامتة في الحصص</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="mark">3</div>
+        <h3>المشاركة</h3>
+        <div class="when">الأسابيع من 7 إلى 10</div>
+        <ul>
+          <li>الأنشطة القرائية والتصميمية</li>
+          <li>حلقات نقاش بقيادة الطالبات</li>
+          <li>متابعة المحطات والأوسمة</li>
+        </ul>
+      </div>
+      <div class="phase">
+        <div class="mark">4</div>
+        <h3>الاحتفاء</h3>
+        <div class="when">الأسبوعان 11 و12</div>
+        <ul>
+          <li>قياس النتائج وجمع الإحصائيات</li>
+          <li>تكريم القارئات المتميزات</li>
+          <li>توثيق التجربة ونشر قصص النجاح</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- المحطات -->
+<section id="stations">
+  <div class="wrap">
+    <h2>محطات الرحلة</h2>
+    <p class="lead">أربع محطات، وفي كل محطة وسام. كلما قرأتِ أكثر، ارتفعتِ إلى أفق أبعد.</p>
+    <div class="stations" id="stationList"></div>
+  </div>
+</section>
+
+<!-- سمائي -->
+<section id="sky" class="dark">
+  <div class="wrap">
+    <h2>سمائي</h2>
+    <p class="lead" id="skyLead">هنا تظهر نجومك وأوسمتك وكتبك. تحتاجين تسجيل الدخول لتبدئي.</p>
+
+    <div class="panel locked" id="locked" style="margin-top:40px">
+      <svg class="sky" id="skyLocked" viewBox="0 0 600 380" aria-hidden="true"></svg>
+      <h3>سماؤك تنتظرك</h3>
+      <p>سجّلي دخولك لتضيئي أول نجمة، وتتابعي محطتك وأوسمتك وقائمة كتبك.</p>
+      <button class="btn btn-gold" data-open-login>تسجيل الدخول</button>
+    </div>
+
+    <div id="dash" hidden style="margin-top:40px">
+      <div class="panel">
+        <div class="dash-top">
+          <div>
+            <small id="dHello">محطتك الآن</small>
+            <h3 id="dStation"></h3>
+            <p id="dNext"></p>
+            <div class="meter">
+              <div class="meter-top"><span>كتبك حتى الآن</span><b id="dCount"></b></div>
+              <div class="bar" id="dBar" role="progressbar" aria-valuemin="0"><i id="dFill"></i></div>
+            </div>
+          </div>
+          <div>
+            <svg class="sky" id="skyMain" viewBox="0 0 600 380" role="img" aria-label="نجومك"></svg>
+            <p class="sky-cap" id="skyCap"></p>
+          </div>
+        </div>
+        <h3 class="medals-h">أوسمتي</h3>
+        <div class="medals" id="medals"></div>
+      </div>
+
+      <div class="dash-bottom">
+        <div class="panel">
+          <h3 style="font-size:1.55rem;margin-bottom:14px">أضيئي نجمة جديدة</h3>
+          <form id="bookForm" autocomplete="off">
+            <label class="field"><span>اسم الكتاب</span><input name="title" required maxlength="80"></label>
+            <div class="row2">
+              <label class="field"><span>المؤلف</span><input name="author" maxlength="60"></label>
+              <label class="field"><span>عدد الصفحات</span><input name="pages" type="number" min="1" max="3000" inputmode="numeric"></label>
+            </div>
+            <label class="field"><span>رأيك في جملة واحدة</span><input name="note" maxlength="140"></label>
+            <button class="btn btn-gold" type="submit">التالي: أنشطة الكتاب</button>
+            <p class="hint">بعد قراءة الكتاب تحلّين أنشطته الخمسة، ثم تضيء نجمتك. تُحفظ بياناتك على هذا الجهاز فقط.</p>
+          </form>
+        </div>
+        <div class="panel">
+          <h3 style="font-size:1.55rem;margin-bottom:14px">كتبي المقروءة</h3>
+          <ul class="log" id="log"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- الكتب -->
+<section id="books">
+  <div class="wrap">
+    <h2>كتب مقترحة</h2>
+    <p class="lead">ثمانية كتب اخترناها لتبدأي بها. اضغطي على أي كتاب لتري ملخصه ورابط قراءته. وإذا قرأتِه فحلّي أنشطته لتضيء نجمتك.</p>
+    <div class="shelf" id="shelf"></div>
+  </div>
+</section>
+
+<!-- الأنشطة -->
+<section id="activities" class="dark">
+  <div class="wrap">
+    <h2>الأنشطة</h2>
+    <p class="lead">القراءة أجمل حين نحوّلها إلى فكرة وتصميم وحوار.</p>
+    <ol class="acts" id="actList"></ol>
+  </div>
+</section>
+
+<!-- النتائج -->
+<section id="results">
+  <div class="wrap res-grid">
+    <h2>إنجازات المبادرة</h2>
+    <ul class="res-list" id="resList"></ul>
+  </div>
+</section>
+
+<!-- الإحصائيات -->
+<section id="stats">
+  <div class="wrap">
+    <h2>المبادرة بالأرقام</h2>
+    <div class="stats" id="stats-grid"></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="credits">
+      <div><small>المدرسة</small><b id="creditSchool"></b></div>
+      <div><small>إعداد وتنفيذ</small><b id="creditTeam"></b></div>
+      <div><small>مديرة المدرسة</small><b id="creditPrincipal"></b></div>
+    </div>
+    <p><span id="footName">رحلة قارئة</span>، مبادرة قرائية للطالبات</p>
+  </div>
+</footer>
+
+<!-- نافذة الدخول -->
+<dialog id="loginDlg" aria-labelledby="lTitle">
+  <div class="dlg">
+    <div class="dlg-head">
+      <h2 id="lTitle">تسجيل الدخول</h2>
+      <button class="x" id="lClose" aria-label="إغلاق">×</button>
+    </div>
+
+    <div id="lGuest">
+      <p class="sub">اكتبي اسمك وصفّك لتدخلي إلى سمائك.</p>
+      <form id="loginForm" autocomplete="off">
+        <label class="field"><span>الاسم</span><input name="name" required maxlength="40" placeholder="اسم الطالبة"></label>
+        <label class="field"><span>الصف</span>
+          <select name="grade" required>
+            <option value="">اختاري الصف</option>
+            <option>الأول الثانوي</option>
+            <option>الثاني الثانوي</option>
+            <option>الثالث الثانوي</option>
+          </select>
+        </label>
+        <button class="btn btn-gold" type="submit" style="width:100%">دخول</button>
+      </form>
+      <div class="profiles" id="profiles" hidden>
+        <h3>طالبات سجّلن على هذا الجهاز</h3>
+        <div id="profileList"></div>
+      </div>
+    </div>
+
+    <div id="lUser" hidden>
+      <div class="me"><div class="av" id="lAv"></div><div><b id="lName"></b><br><small id="lGrade" style="color:var(--mist)"></small></div></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a class="btn btn-gold btn-sm" href="#sky" id="lGo">اذهبي إلى سمائي</a>
+        <button class="btn btn-line btn-sm" id="logoutBtn">تسجيل الخروج</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="bookDlg" class="actdlg" aria-labelledby="bTitle">
+  <div class="dlg">
+    <div class="dlg-head">
+      <h2 id="bTitle"></h2>
+      <button class="x" id="bClose" aria-label="إغلاق" type="button">×</button>
+    </div>
+    <div class="bk-meta" id="bAuthor"></div>
+    <p class="bk-sum" id="bSum"></p>
+    <div class="bk-extra" id="bExtra" hidden></div>
+    <div class="bk-actions">
+      <a class="btn btn-line btn-sm" id="bLink" target="_blank" rel="noopener noreferrer"></a>
+      <button class="btn btn-gold btn-sm" id="bRead" type="button"></button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="actDlg" class="actdlg" aria-labelledby="aTitle">
+  <div class="dlg">
+    <div class="dlg-head">
+      <h2 id="aTitle">أنشطة الكتاب</h2>
+      <button class="x" id="aClose" aria-label="إغلاق" type="button">×</button>
+    </div>
+    <p class="sub" id="aSub"></p>
+    <form id="actForm" autocomplete="off">
+      <div id="aFields"></div>
+      <p class="actcount" id="aCount"></p>
+      <button class="btn btn-gold" type="submit" id="aSubmit" style="width:100%" disabled>أضيئي نجمتي</button>
+    </form>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ============================================================
+   إعدادات الصفحة: عدّلي هنا الأسماء والكتب والأرقام
+   ============================================================ */
+const CONFIG = {
+  initiative: 'رحلة قارئة',
+  school: 'الثانوية ١٠٤',
+  principal: 'أ/ مزهرة الشمراني',
+  team: ['أ/ غادة الزهراني', 'أ/ فاطمة الزهراني'],
+
+  // المحطات الأربع: min = عدد الكتب اللازم للوصول إليها
+  stages: [
+    { name: 'قارئة البدايات', min: 0, desc: 'تبدأ رحلتها وتخطو أولى خطواتها مع الكتب.' },
+    { name: 'صاحبة الفكر',   min: 2, desc: 'تقرأ بعمق، وتكوّن رأيها فيما تقرأ.' },
+    { name: 'ملهمة الأفق',   min: 5, desc: 'تتّسع نظرتها، وتُلهم زميلاتها بما تقرأ.' },
+    { name: 'سفيرة المعرفة', min: 8, desc: 'تحمل شغف القراءة إلى كل من حولها.' }
+  ],
+
+  // الكتب الثمانية: s = الملخص، link = رابط القراءة، extra = نشاط إضافي خاص بكتاب واحد (اختياري)
+  books: [
+    { t: 'العادات الذرية', a: 'جيمس كلير', w: 'خطوات صغيرة تصنع عادات كبيرة.',
+      s: 'يعرض الكاتب فكرة بسيطة: التغيير الكبير يأتي من تحسّن صغير يتكرر كل يوم. يشرح كيف تتكوّن العادة من إشارة ورغبة واستجابة ومكافأة، وكيف نجعل العادة الجيدة واضحة وجذابة وسهلة، والعادة السيئة العكس. ويدعو إلى أن نبني هويتنا بما نكرره، فمن تقرأ كل يوم تصبح قارئة.',
+      link: 'https://www.google.com/search?tbm=bks&q=%D8%A7%D9%84%D8%B9%D8%A7%D8%AF%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B0%D8%B1%D9%8A%D8%A9%20%D8%AC%D9%8A%D9%85%D8%B3%20%D9%83%D9%84%D9%8A%D8%B1', lab: 'ابحثي عن الكتاب',
+      extra: { t: 'توثيق الكتاب', d: 'وثّقي الكتاب بطريقة علمية: اسم المؤلف، وتاريخ النشر، وعنوان الكتاب.', ph: 'مثال: المؤلف. (سنة النشر). عنوان الكتاب. دار النشر.' } },
+    { t: 'فن اللامبالاة', a: 'مارك مانسون', w: 'كيف تختارين ما يستحق اهتمامك.',
+      s: 'يرى الكاتب أن مطاردة الإيجابية الدائمة لا تصنع السعادة، وأن الحياة مليئة بالمشكلات التي لا مفر منها. الحل في أن نختار بوعي القيم والأمور التي تستحق اهتمامنا، ونتحمّل مسؤولية ما يحدث لنا، ونتقبّل الفشل والألم كجزء من النمو.',
+      link: 'https://www.google.com/search?tbm=bks&q=%D9%81%D9%86%20%D8%A7%D9%84%D9%84%D8%A7%D9%85%D8%A8%D8%A7%D9%84%D8%A7%D8%A9%20%D9%85%D8%A7%D8%B1%D9%83%20%D9%85%D8%A7%D9%86%D8%B3%D9%88%D9%86', lab: 'ابحثي عن الكتاب' },
+    { t: 'لأنك الله', a: 'علي بن جابر الفيفي', w: 'تأملات في القرب من الله.',
+      s: 'كتاب إيماني يدعو القارئ إلى التأمل في صلته بالله، وفي أسمائه وصفاته وأثرها على القلب والسلوك. يربط بين معرفة الله وبين الطمأنينة والثقة في أحوال الحياة المختلفة.',
+      link: 'https://www.google.com/search?tbm=bks&q=%D9%84%D8%A3%D9%86%D9%83%20%D8%A7%D9%84%D9%84%D9%87%20%D8%B9%D9%84%D9%8A%20%D8%A8%D9%86%20%D8%AC%D8%A7%D8%A8%D8%B1%20%D8%A7%D9%84%D9%81%D9%8A%D9%81%D9%8A', lab: 'ابحثي عن الكتاب' },
+    { t: 'الرحيق المختوم', a: 'صفي الرحمن المباركفوري', w: 'سيرة النبي ﷺ بأسلوب موثّق.',
+      s: 'بحث في السيرة النبوية حاز جائزة المركز الأول في مسابقة رابطة العالم الإسلامي للسيرة. يبدأ بأحوال العرب والأمم قبل البعثة، ثم يتتبّع حياة النبي ﷺ من المولد إلى الوفاة، ويعرض الغزوات والأحداث الكبرى بترتيب واضح وتوثيق للمصادر.',
+      link: 'https://www.google.com/search?tbm=bks&q=%D8%A7%D9%84%D8%B1%D8%AD%D9%8A%D9%82%20%D8%A7%D9%84%D9%85%D8%AE%D8%AA%D9%88%D9%85%20%D8%A7%D9%84%D9%85%D8%A8%D8%A7%D8%B1%D9%83%D9%81%D9%88%D8%B1%D9%8A', lab: 'ابحثي عن الكتاب' },
+    { t: 'كليلة ودمنة', a: 'ابن المقفع', w: 'حكايات على ألسنة الحيوان.',
+      s: 'مجموعة حكايات على لسان الحيوان نقلها ابن المقفع إلى العربية في القرن الثاني الهجري، وأصلها هندي. تدور حول الأسد والثور والشقيقين كليلة ودمنة، وتحمل حكمًا في السياسة والصداقة والحذر من الحاشية والمكر. كل حكاية تُروى داخل حكاية أخرى، وتنتهي بعبرة.',
+      link: 'https://ar.wikisource.org/wiki/%D9%83%D9%84%D9%8A%D9%84%D8%A9_%D9%88%D8%AF%D9%85%D9%86%D8%A9', lab: 'اقرئي الكتاب' },
+    { t: 'شيء عن التربية الوطنية', a: '', w: 'قراءة في مفهوم التربية الوطنية.',
+      s: 'يتناول الكتاب مفهوم التربية الوطنية وقيمها كالانتماء والمسؤولية، ودور المدرسة والأسرة في غرسها. (يمكن للمعلمة تعديل هذا الملخص ليطابق نسخة الكتاب المعتمدة.)',
+      link: 'https://www.google.com/search?tbm=bks&q=%D8%B4%D9%8A%D8%A1%20%D8%B9%D9%86%20%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%8A%D8%A9%20%D8%A7%D9%84%D9%88%D8%B7%D9%86%D9%8A%D8%A9', lab: 'ابحثي عن الكتاب' },
+    { t: 'حي بن يقظان', a: 'ابن طفيل', w: 'قصة فلسفية عن العقل والتأمل.',
+      s: 'قصة فلسفية كتبها الأندلسي ابن طفيل في القرن السادس الهجري. ينشأ حي وحده في جزيرة منعزلة، ويصل بالتأمل في الطبيعة والعقل إلى معرفة الكون وخالقه. ثم يلتقي بإنسان من جزيرة مجاورة، فيقارن ما وصل إليه بالعقل بما جاءت به الشريعة، وتؤكد القصة أن الحق واحد.',
+      link: 'https://ar.wikisource.org/w/index.php?search=%D8%AD%D9%8A%20%D8%A8%D9%86%20%D9%8A%D9%82%D8%B8%D8%A7%D9%86', lab: 'اقرئي الكتاب' },
+    { t: 'دور التربويين في حماية فكر الناشئة', a: '', w: 'مسؤولية التربويين تجاه الناشئة.',
+      s: 'يتناول الكتاب مسؤولية المعلمين والمربين في حماية فكر الأجيال الناشئة من الأفكار المنحرفة، وطرق تعزيز الوعي والحوار والقدوة. (يمكن للمعلمة تعديل هذا الملخص ليطابق نسخة الكتاب المعتمدة.)',
+      link: 'https://www.google.com/search?tbm=bks&q=%D8%AF%D9%88%D8%B1%20%D8%A7%D9%84%D8%AA%D8%B1%D8%A8%D9%88%D9%8A%D9%8A%D9%86%20%D9%81%D9%8A%20%D8%AD%D9%85%D8%A7%D9%8A%D8%A9%20%D9%81%D9%83%D8%B1%20%D8%A7%D9%84%D9%86%D8%A7%D8%B4%D8%A6%D8%A9', lab: 'ابحثي عن الكتاب' }
+  ],
+
+  goals: [
+    { t: 'ترسيخ عادة القراءة اليومية', d: 'عشرون دقيقة كل يوم تكفي لتتحول القراءة من واجب إلى روتين محبّب.' },
+    { t: 'زيادة عدد الكتب المقروءة', d: 'نجمة لكل كتاب، وتقدّم يمكن رؤيته ومتابعته.' },
+    { t: 'تنمية مهارات التلخيص والتأمل', d: 'قراءة تتبعها كتابة وتفكير، فتنمو اللغة والفكر معًا.' },
+    { t: 'تحويل القراءة إلى إبداع', d: 'تصميم الأغلفة وخرائط المفاهيم يربط الكتاب بمهارات الطالبة الفنية.' },
+    { t: 'بناء مجتمع قرائي داخل المدرسة', d: 'طالبات يتشاركن الكتب والآراء ويحتفين بإنجازات بعضهن.' }
+  ],
+
+  // الأنشطة: تحلّها الطالبة بعد قراءة كل كتاب وقبل أن تضيء نجمتها
+  activities: [
+    { t: 'اقتباس يستحق التأمل', d: 'شاركي اقتباسًا استوقفك في كتاب، واكتبي لماذا يستحق أن نتأمله.', ph: 'اكتبي الاقتباس، ثم لماذا يستحق التأمل' },
+    { t: 'غلاف بديل', d: 'أعيدي تصميم غلاف كتاب أحببتِه بفكرتك وألوانك.', ph: 'صفي غلافك الجديد: الفكرة والألوان والرسمة' },
+    { t: 'ملخّص قارئة', d: 'لخّصي كتابًا أعجبك وقرأتِه.', ph: 'لخّصي الكتاب بأسلوبك في عدة أسطر' },
+    { t: 'أجمل سطرين', d: 'اختاري أجمل سطرين في الكتاب وشاركيهما مع زميلاتك.', ph: 'اكتبي أجمل سطرين وجدتِهما في الكتاب' },
+    { t: 'خريطة مفاهيم', d: 'صمّمي خريطة مفاهيم لكتاب قرأتِه.', ph: 'اكتبي الفكرة الرئيسية في الوسط وأهم فروعها' }
+  ],
+
+  // نتائج توضيحية: عدّليها بحسب ما حققته المبادرة
+  results: [
+    { t: 'قارئات أكثر وانتظام أعلى', d: 'ازداد عدد الطالبات اللاتي يقرأن بانتظام داخل المدرسة وخارجها.' },
+    { t: 'مهارات تلخيص وتأمل أقوى', d: 'لاحظت المعلمات تحسّنًا في التلخيص والتعبير أثناء الحصص.' },
+    { t: 'إبداع يولد من الكتب', d: 'أغلفة وخرائط مفاهيم صمّمتها الطالبات من كتب قرأنها.' },
+    { t: 'ركن قراءة دائم', d: 'أصبح للمدرسة ركن يجتمع فيه القارئات طوال العام.' }
+  ],
+
+  // الأرقام تبدأ من صفر: غيّري قيمة n لكل بند عند توفر الأرقام الفعلية
+  stats: [
+    { n: 0, label: 'طالبة مشاركة' },
+    { n: 0, label: 'كتاب مقروء' },
+    { n: 0, label: 'نجمة أُضيئت' },
+    { n: 0, label: 'نشاط ومشاركة' }
+  ]
+};
+const STAGES = CONFIG.stages;
+const GOAL = STAGES[STAGES.length - 1].min;
+
+/* ============================================================ */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const fmt = n => Number(n).toLocaleString('en-US');
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const mem = {};
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return k in mem ? mem[k] : d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) { mem[k] = v; } }
+};
+
+let users = store.get('hz_users', []);
+let currentId = store.get('hz_cur', null);
+const me = () => users.find(u => u.id === currentId) || null;
+const persist = () => { store.set('hz_users', users); store.set('hz_cur', currentId); };
+let justAdded = -1;
+
+let toastT;
+function toast(msg) {
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2600);
+}
+function stageIndex(n) { let i = 0; STAGES.forEach((s, k) => { if (n >= s.min) i = k; }); return i; }
+
+/* ---------- الهوية ---------- */
+document.title = CONFIG.initiative + ' | مبادرة قرائية للطالبات';
+$('#brandName').textContent = CONFIG.initiative;
+$('#footName').textContent = CONFIG.initiative;
+$('#creditSchool').textContent = CONFIG.school;
+$('#creditTeam').innerHTML = [].concat(CONFIG.team).map(esc).join('<br>');
+$('#creditPrincipal').textContent = CONFIG.principal;
+if (CONFIG.school) $('#heroTag').textContent = 'مبادرة قرائية لطالبات ' + CONFIG.school;
+
+/* ---------- المحتوى الثابت ---------- */
+const starIco = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="' + starPath(12, 12, 11) + '"/></svg>';
+$('#goalList').innerHTML = CONFIG.goals.map(g => `<li>${starIco}<div><h3>${esc(g.t)}</h3><p>${esc(g.d)}</p></div></li>`).join('');
+$('#actList').innerHTML = CONFIG.activities.map(a => `<li><div><h3>${esc(a.t)}</h3><p>${esc(a.d)}</p></div></li>`).join('');
+const check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M8 12.5l2.7 2.7L16 9.5"/></svg>';
+$('#resList').innerHTML = CONFIG.results.map(r => `<li>${check}<div><h3>${esc(r.t)}</h3><p>${esc(r.d)}</p></div></li>`).join('');
+$('#stats-grid').innerHTML = CONFIG.stats.map(s => `<div class="stat"><b data-to="${s.n}">0</b><span>${esc(s.label)}</span></div>`).join('');
+
+/* ---------- السماء ---------- */
+function starPath(cx, cy, r) {
+  let d = '';
+  for (let k = 0; k < 10; k++) {
+    const a = -Math.PI / 2 + k * Math.PI / 5, rr = k % 2 ? r * .44 : r;
+    d += (k ? 'L' : 'M') + (cx + rr * Math.cos(a)).toFixed(1) + ' ' + (cy + rr * Math.sin(a)).toFixed(1);
+  }
+  return d + 'Z';
+}
+const SKY = Array.from({ length: 12 }, (_, i) => ({ x: Math.round(548 - i * 45), y: Math.round(300 - 190 * Math.sin(Math.PI * i / 11) + (i % 2 ? 26 : -6)) }));
+const BG = (() => { let s = 7, a = []; for (let i = 0; i < 46; i++) { s = (s * 9301 + 49297) % 233280; const x = s / 233280 * 600; s = (s * 9301 + 49297) % 233280; const y = s / 233280 * 380; a.push([x.toFixed(0), y.toFixed(0), i % 5 ? 1 : 1.6, (0.25 + (i % 4) * .15).toFixed(2)]); } return a; })();
+function drawSky(svg, n, newIdx = -1, labels = false) {
+  const lit = Math.min(n, SKY.length);
+  let h = '';
+  BG.forEach(b => { h += `<circle class="bg" cx="${b[0]}" cy="${b[1]}" r="${b[2]}" opacity="${b[3]}"/>`; });
+  for (let i = 0; i < SKY.length - 1; i++) h += `<line class="ln${i + 1 < lit ? ' on' : ''}" x1="${SKY[i].x}" y1="${SKY[i].y}" x2="${SKY[i + 1].x}" y2="${SKY[i + 1].y}"/>`;
+  SKY.forEach((p, i) => {
+    if (i < lit) h += `<g class="st on${i === newIdx ? ' pop' : ''}" style="--d:${((i * .37) % 3).toFixed(2)}s"><circle class="halo" cx="${p.x}" cy="${p.y}" r="22"/><path class="gem" d="${starPath(p.x, p.y, 14)}"/></g>`;
+    else h += `<circle class="st off" cx="${p.x}" cy="${p.y}" r="4.5"/>`;
+  });
+  if (labels) {
+    const si = stageIndex(n);
+    STAGES.forEach((s, i) => {
+      const p = SKY[Math.max(0, s.min - 1)], x = Math.min(535, Math.max(65, p.x)), y = (i === 0 || i === 3) ? p.y + 44 : p.y - 28;
+      h += `<text class="lb${i <= si ? ' on' : ''}" x="${x}" y="${y}">${esc(s.name)}</text>`;
+    });
+  }
+  svg.innerHTML = h;
+}
+
+/* ---------- مسار المحطات (أول الصفحة) ---------- */
+let trailDrawn = false;
+function drawTrail(svg, si) {
+  const D = 'M 330 410 C 330 330, 90 360, 120 280 S 310 230, 250 160 S 70 110, 130 36';
+  svg.innerHTML = `<path class="tbg" d="${D}"/><path class="tfg${trailDrawn ? '' : ' draw'}" id="tfgPath" pathLength="1" d="${D}"/>`;
+  trailDrawn = true;
+  const fg = svg.querySelector('#tfgPath'), len = fg.getTotalLength();
+  STAGES.forEach((s, i) => {
+    const p = fg.getPointAtLength(len * (i / (STAGES.length - 1)));
+    const cls = i < si ? 'done' : i === si ? 'now' : '', on = i <= si, leftSide = p.x < 200;
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+    g.setAttribute('class', 'stop ' + cls);
+    g.innerHTML = (on ? `<circle class="halo" cx="${p.x}" cy="${p.y}" r="26"/>` : '') +
+      `<path class="${on ? 'on' : 'off'}" d="${starPath(p.x, p.y, i === si ? 19 : 15)}"/>` +
+      `<text x="${p.x + (leftSide ? 28 : -28)}" y="${p.y + 6}" text-anchor="${leftSide ? 'end' : 'start'}">${esc(s.name)}</text>`;
+    svg.appendChild(g);
+  });
+}
+
+/* ---------- المحطات ---------- */
+function renderStations(si, loggedIn) {
+  $('#stationList').innerHTML = STAGES.map((s, i) => `
+    <div class="station${loggedIn && i === si ? ' here' : ''}${loggedIn && i < si ? ' done' : ''}">
+      <div class="no">${i + 1}</div>
+      <h3>${esc(s.name)}</h3>
+      <div class="req">${s.min === 0 ? 'من أول خطوة' : (s.min === 1 ? 'كتاب واحد' : s.min === 2 ? 'كتابان' : fmt(s.min) + ' كتب')}</div>
+      <p>${esc(s.desc)}</p>
+    </div>`).join('');
+}
+
+/* ---------- الرسم العام ---------- */
+function render() {
+  const u = me(), loggedIn = !!u, n = u ? u.books.length : 0, si = stageIndex(n);
+
+  // الرأس
+  $('#loginBtn').textContent = u ? u.name.split(' ')[0] : 'تسجيل الدخول';
+  $('#heroCta').textContent = u ? 'اذهبي إلى سمائي' : 'سجّلي دخولك وابدئي';
+
+  // الواجهة
+  drawTrail($('#skyHero'), si);
+  $('#heroCap').textContent = u ? `أنتِ الآن في محطة «${STAGES[si].name}»` : 'أربع محطات، وفي كل محطة وسام';
+
+  renderStations(si, loggedIn);
+
+  // سمائي
+  $('#locked').hidden = loggedIn; $('#dash').hidden = !loggedIn;
+  $('#skyLead').textContent = loggedIn ? 'هنا نجومك وأوسمتك وكتبك. نجمة جديدة بعد كل كتاب تقرئينه وتحلّين أنشطته.' : 'هنا تظهر نجومك وأوسمتك وكتبك. تحتاجين تسجيل الدخول لتبدئي.';
+  drawSky($('#skyLocked'), 0);
+  if (loggedIn) {
+    drawSky($('#skyMain'), n, justAdded, true);
+    $('#dHello').textContent = `مرحبًا ${u.name.split(' ')[0]}، محطتك الآن`;
+    $('#dStation').textContent = STAGES[si].name;
+    const nxt = STAGES[si + 1];
+    $('#dNext').textContent = nxt ? `باقٍ ${fmt(nxt.min - n)} ${nxt.min - n === 1 ? 'كتاب' : 'كتب'} لتصلي إلى «${nxt.name}».` : 'وصلتِ إلى أعلى محطة. ألهمي زميلاتك واستمري.';
+    $('#dCount').textContent = `${fmt(n)} من ${fmt(GOAL)}`;
+    $('#dFill').style.width = Math.min(100, Math.round(n / GOAL * 100)) + '%';
+    $('#dBar').setAttribute('aria-valuenow', Math.min(n, GOAL)); $('#dBar').setAttribute('aria-valuemax', GOAL);
+    $('#skyCap').textContent = n > SKY.length ? `${fmt(n)} كتابًا، والسماء كلها تضيء لك` : `${fmt(Math.min(n, SKY.length))} من ${SKY.length} نجمة مضيئة`;
+    $('#medals').innerHTML = STAGES.map((s, i) => `
+      <div class="medal${i <= si ? '' : ' lock'}">
+        <svg viewBox="0 0 64 64" aria-hidden="true"><circle class="ring" cx="32" cy="32" r="28"/><path class="gem" d="${starPath(32, 33, 15)}"/></svg>
+        <b>${esc(s.name)}</b>
+      </div>`).join('');
+    const log = $('#log');
+    log.innerHTML = n ? u.books.slice().reverse().map(b => `
+      <li>
+        ${starIco.replace('<svg', '<svg class="tick"')}
+        <div class="info">
+          <b>${esc(b.title)}</b>
+          <span class="meta">${[b.author, b.pages ? fmt(b.pages) + ' صفحة' : ''].filter(Boolean).map(esc).join('، ')}</span>
+          ${b.note ? `<div class="note">${esc(b.note)}</div>` : ''}
+          ${b.acts ? `<details><summary>أنشطتي في هذا الكتاب</summary>${b.acts.map(a => `<div><b>${esc(a.t)}</b>${esc(a.v || '')}</div>`).join('')}</details>` : ''}
+        </div>
+        <button class="icon-btn" data-del="${b.id}" aria-label="حذف ${esc(b.title)}">حذف</button>
+      </li>`).join('') : '<li class="empty">لم تسجّلي كتبًا بعد. أضيفي أول كتاب لتضيء أول نجمة.</li>';
+  }
+
+  renderShelf();
+  renderLoginDlg();
+  justAdded = -1;
+}
+
+/* ---------- الكتب المقترحة ---------- */
+const COVERS = [['#1F3555', '#F6F4EF'], ['#A99BD1', '#14233A'], ['#F0C878', '#14233A'], ['#3E6A7D', '#F6F4EF'], ['#7C6BA8', '#F6F4EF'], ['#B9C8DD', '#14233A'], ['#2D4F6E', '#F6F4EF'], ['#D9A66B', '#14233A']];
+function renderShelf() {
+  const u = me();
+  $('#shelf').innerHTML = CONFIG.books.map((b, i) => {
+    const read = !!u && u.books.some(x => x.title === b.t), c = COVERS[i % COVERS.length];
+    return `<article class="book${read ? ' read' : ''}">
+      <div class="cover" style="background:${c[0]};color:${c[1]}">
+        ${starIco.replace('<svg', '<svg class="badge"')}
+        <h3>${esc(b.t)}</h3><span>${esc(b.a || '')}</span>
+      </div>
+      <p>${esc(b.w)}</p>
+      <div class="bk-actions">
+        <button class="btn btn-ink btn-sm" data-info="${i}">الملخص والقراءة</button>
+      </div>
+    </article>`;
+  }).join('');
+}
+const bookDlg = $('#bookDlg');
+let openIdx = -1;
+function showBook(i) {
+  const b = CONFIG.books[i], u = me(); openIdx = i;
+  $('#bTitle').textContent = b.t;
+  $('#bAuthor').textContent = b.a ? 'المؤلف: ' + b.a : '';
+  $('#bSum').textContent = b.s;
+  $('#bExtra').hidden = !b.extra;
+  if (b.extra) $('#bExtra').innerHTML = `<b>نشاط إضافي في هذا الكتاب:</b> ${esc(b.extra.t)}. ${esc(b.extra.d)}`;
+  const a = $('#bLink'); a.href = b.link; a.textContent = b.lab;
+  const read = !!u && u.books.some(x => x.title === b.t), r = $('#bRead');
+  r.disabled = read; r.textContent = read ? 'أضاءت نجمتك' : 'قرأته، حلّي أنشطته';
+  bookDlg.showModal();
+}
+$('#shelf').addEventListener('click', e => {
+  const btn = e.target.closest('[data-info]'); if (btn) showBook(+btn.dataset.info);
+});
+$('#bClose').addEventListener('click', () => bookDlg.close());
+bookDlg.addEventListener('click', e => { if (e.target === bookDlg) bookDlg.close(); });
+$('#bRead').addEventListener('click', () => {
+  const b = CONFIG.books[openIdx]; bookDlg.close();
+  if (!me()) { toast('سجّلي دخولك أولًا لتضيئي نجمتك'); openLogin(); return; }
+  addBook({ title: b.t, author: b.a });
+});
+
+/* ---------- إضافة وحذف الكتب ---------- */
+let pending = null;
+const actDlg = $('#actDlg');
+function addBook(info) {
+  const u = me(); if (!u) { openLogin(); return false; }
+  const title = (info.title || '').trim(); if (!title) return false;
+  if (u.books.some(b => b.title === title)) { toast('هذا الكتاب مسجّل لديك'); return false; }
+  const cb = CONFIG.books.find(b => b.t === title);
+  const fields = CONFIG.activities.concat(cb && cb.extra ? [cb.extra] : []);
+  pending = { title, author: (info.author || '').trim(), pages: info.pages ? +info.pages : '', note: (info.note || '').trim(), fields };
+  $('#aSub').innerHTML = `أنهيتِ كتاب «${esc(title)}»؟ حلّي الأنشطة (${fmt(fields.length)}) لتضيء نجمتك.`;
+  $('#aFields').innerHTML = fields.map((a, k) => `
+    <label class="field"><span><b>${k + 1}.</b> ${esc(a.t)}: ${esc(a.d)}</span>
+      <textarea name="a${k}" maxlength="600" placeholder="${esc(a.ph)}"></textarea></label>`).join('');
+  checkActs(); actDlg.showModal();
+  return true;
+}
+const ACT_MIN = 8;
+function checkActs() {
+  const vals = (pending ? pending.fields : []).map((_, k) => ($('#actForm').elements['a' + k].value || '').trim().length >= ACT_MIN);
+  const done = vals.filter(Boolean).length;
+  $('#aCount').textContent = `اكتملت ${fmt(done)} من ${fmt(vals.length)} أنشطة`;
+  $('#aSubmit').disabled = !vals.length || done < vals.length;
+}
+$('#actForm').addEventListener('input', checkActs);
+$('#aClose').addEventListener('click', () => actDlg.close());
+actDlg.addEventListener('click', e => { if (e.target === actDlg) actDlg.close(); });
+$('#actForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const u = me(); if (!u || !pending) return;
+  const acts = pending.fields.map((f, k) => ({ t: f.t, v: e.target.elements['a' + k].value.trim() }));
+  if (acts.some(a => a.v.length < ACT_MIN)) { checkActs(); return; }
+  const prev = stageIndex(u.books.length);
+  const { fields, ...rec } = pending;
+  u.books.push({ id: Date.now() + Math.random().toString(36).slice(2, 6), ...rec, acts });
+  pending = null; actDlg.close(); $('#bookForm').reset();
+  persist(); justAdded = u.books.length - 1; render();
+  const st = stageIndex(u.books.length);
+  toast(st > prev ? `مبروك! حصلتِ على وسام «${STAGES[st].name}»` : 'أحسنتِ! أضاءت نجمة جديدة في سمائك');
+});
+$('#bookForm').addEventListener('submit', e => {
+  e.preventDefault();
+  addBook(Object.fromEntries(new FormData(e.target)));
+});
+$('#log').addEventListener('click', e => {
+  const id = e.target.dataset.del, u = me(); if (!id || !u) return;
+  u.books = u.books.filter(b => b.id !== id); persist(); render();
+});
+
+/* ---------- تسجيل الدخول ---------- */
+const dlg = $('#loginDlg');
+function openLogin() { renderLoginDlg(); dlg.showModal(); }
+$$('[data-open-login]').forEach(b => b.addEventListener('click', () => {
+  if (me() && b.id === 'heroCta') { location.hash = '#sky'; return; }
+  openLogin();
+}));
+$('#lClose').addEventListener('click', () => dlg.close());
+dlg.addEventListener('click', e => { if (e.target === dlg) dlg.close(); });
+$('#lGo').addEventListener('click', () => dlg.close());
+
+function renderLoginDlg() {
+  const u = me();
+  $('#lGuest').hidden = !!u; $('#lUser').hidden = !u;
+  $('#lTitle').textContent = u ? 'حسابي' : 'تسجيل الدخول';
+  if (u) { $('#lAv').textContent = u.name.trim().charAt(0); $('#lName').textContent = u.name; $('#lGrade').textContent = u.grade; }
+  $('#profiles').hidden = !users.length;
+  $('#profileList').innerHTML = users.map(p => `<button type="button" data-uid="${p.id}"><span>${esc(p.name)}</span><small>${esc(p.grade)}</small></button>`).join('');
+}
+function signIn(id, isNew) {
+  currentId = id; persist(); dlg.close(); render();
+  const u = me(); toast(isNew ? `أهلًا ${u.name.split(' ')[0]}، سماؤك جاهزة` : `أهلًا بعودتك ${u.name.split(' ')[0]}`);
+}
+$('#loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = Object.fromEntries(new FormData(e.target)), name = f.name.trim().replace(/\s+/g, ' ');
+  if (!name || !f.grade) return;
+  let u = users.find(x => x.name === name && x.grade === f.grade), isNew = false;
+  if (!u) { u = { id: 'u' + Date.now().toString(36), name, grade: f.grade, books: [] }; users.push(u); isNew = true; }
+  e.target.reset(); signIn(u.id, isNew);
+});
+$('#profileList').addEventListener('click', e => { const b = e.target.closest('[data-uid]'); if (b) signIn(b.dataset.uid, false); });
+$('#logoutBtn').addEventListener('click', () => { currentId = null; persist(); dlg.close(); render(); toast('تم تسجيل الخروج'); });
+
+/* ---------- الأرقام ---------- */
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const io = new IntersectionObserver(es => es.forEach(en => {
+  if (!en.isIntersecting) return; io.unobserve(en.target);
+  $$('[data-to]', en.target).forEach(b => {
+    const to = +b.dataset.to; if (reduce || !to) { b.textContent = fmt(to); return; }
+    const t0 = performance.now(), dur = 1400;
+    (function tick(t) { const p = Math.min(1, (t - t0) / dur); b.textContent = fmt(Math.round(to * (1 - Math.pow(1 - p, 3)))); if (p < 1) requestAnimationFrame(tick); })(t0);
+  });
+}), { threshold: .4 });
+io.observe($('#stats-grid'));
+
+/* ---------- شريط التقدم ---------- */
+const pbar = $('#pbar');
+addEventListener('scroll', () => {
+  const h = document.documentElement, max = h.scrollHeight - h.clientHeight;
+  pbar.style.width = (max > 0 ? h.scrollTop / max * 100 : 0) + '%';
+}, { passive: true });
+
+/* ---------- تشغيل ---------- */
+render();
+</script>
+</body>
+</html>
